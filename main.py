@@ -23,7 +23,7 @@ FOREIGN_ADDRESS = '47.241.243.39'
 def socks5_to_ssr(origin_proxy: str, to_port: int):
     """
     # 10000-20000
-    proxy.packetstream.io:31112:nicky_lam:25u8XyBQ1262yiE5_country-Canada_session-XSBPFcux:http/17503
+    92.119.161.43:50149:JTKRTQCG:kqPjwccD
     :param origin_proxy:
     :param to_port:
     :return:
@@ -34,7 +34,7 @@ def socks5_to_ssr(origin_proxy: str, to_port: int):
     if pid is not None:
         psutil.Process(int(pid)).kill()
     origin_proxy_list = origin_proxy.split(':')
-    if len(origin_proxy_list) != 5:
+    if len(origin_proxy_list) != 4:
         return jsonify(code=201, msg='Incorrect format')
     cmd = f'pproxy -r socks5://{origin_proxy_list[0]}:{origin_proxy_list[1]}#{origin_proxy_list[2]}:{origin_proxy_list[3]} -l ssr://chacha20:nantian888@0.0.0.0:{to_port} --daemon'
     os.system(cmd)
@@ -62,7 +62,7 @@ def ssr_to_socks5(origin_proxy: str, to_port: int):
     if pid is not None:
         psutil.Process(int(pid)).kill()
     origin_proxy_list = origin_proxy.split(':')
-    if len(origin_proxy_list) != 5:
+    if len(origin_proxy_list) != 4:
         return jsonify(code=201, msg='Incorrect format')
     cmd = f'pproxy -r ssr://{origin_proxy_list[0]}:{origin_proxy_list[1]}#{origin_proxy_list[2]}:{origin_proxy_list[3]} -l socks5://0.0.0.0:{to_port} --daemon'
     os.system(cmd)

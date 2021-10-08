@@ -31,6 +31,7 @@ def socks5_to_ssr(origin_proxy: str, to_port: int):
     if to_port not in range(10000, 20000):
         return jsonify(code=200, msg='to_port in 10000-20000')
     pid = check_proxy_ok(to_port)
+    print("存在", pid)
     if pid is not None:
         psutil.Process(int(pid)).kill()
     origin_proxy_list = origin_proxy.split(':')
@@ -40,6 +41,7 @@ def socks5_to_ssr(origin_proxy: str, to_port: int):
     os.system(cmd)
     time.sleep(3)
     pid = check_proxy_ok(to_port)
+    print("新的pid", pid)
     if pid is not None:
         return jsonify(code=200, msg='ok',
                        data={'url': f'chacha20:nantian888:{FOREIGN_ADDRESS}:{to_port}', 'pid': pid})

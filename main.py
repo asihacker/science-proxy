@@ -42,7 +42,7 @@ def socks5_to_ssr(origin_proxy: str, to_port: int):
     pid = check_proxy_ok(to_port)
     if pid is not None:
         return jsonify(code=200, msg='ok',
-                       data={'url': f'ssr://chacha20:nantian888:{FOREIGN_ADDRESS}:{to_port}', 'pid': pid})
+                       data={'url': f'chacha20:nantian888:{FOREIGN_ADDRESS}:{to_port}', 'pid': pid})
     else:
         return jsonify(code=201, msg='Failed to open')
 

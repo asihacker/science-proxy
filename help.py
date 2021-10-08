@@ -42,6 +42,7 @@ def check_proxy_ok(to_port: int):
         except psutil.NoSuchProcess:
             pass
         else:
+            print(info['connections'], info['cmdline'], info['connections'][0].laddr.port)
             if info['connections'] and \
                     'proxy' in '|'.join(info['cmdline']) and to_port == info['connections'][0].laddr.port:
                 return info['pid']
